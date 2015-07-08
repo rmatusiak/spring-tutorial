@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="pizzaOrderServiceImpl" class="com.acme.order.pizza.PizzaOrderServiceImpl">
+		<!-- collaborators and configuration for this bean go here -->
+		<constructor-arg name="orderFactory" ref="orderFactory"/>
+		<constructor-arg name="orderRepository" ref="orderRepository"/>
+		<constructor-arg name="deliveryTimeService" ref="deliveryTimeService"/>
+		<constructor-arg name="messageTemplate" ref="messageTemplate"/>
+		<constructor-arg name="mailSender" ref="mailSender"/>
+	</bean>
+
+	<bean id="mailSender" class="com.acme.order.notification.MailSender"/>
+	
+	<bean id="messageTemplate" class="com.acme.order.notification.SimpleMessageTemplateService"/>
+	
+	<bean id="deliveryTimeService" class="com.acme.order.delivery.BasicDeliveryTimeServiceImpl"/>
+	
+	<bean id="orderRepository" class="com.acme.order.HashMapOrderRepository"/>
+	
+	<bean id="orderFactory" class="com.acme.order.OrderFactory"/>
+
+	<!-- more bean definitions go here -->
+
+</beans>

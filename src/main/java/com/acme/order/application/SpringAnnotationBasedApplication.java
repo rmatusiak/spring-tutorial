@@ -7,5 +7,7 @@ public class SpringAnnotationBasedApplication {
 
 	public static void main(String[] args) {
 		log.info("Spring XML based application");
+		
+		
 	}
 }
