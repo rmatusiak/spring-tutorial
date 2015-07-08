@@ -3,6 +3,9 @@ package com.acme.order.pizza;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import lombok.extern.slf4j.Slf4j;
 
 import com.acme.order.Customer;
@@ -20,26 +23,34 @@ import com.acme.order.notification.OrderCancelledTemplate;
 import com.acme.order.notification.SimpleMessageTemplateService;
 
 @Slf4j
+@Component
 public class PizzaOrderServiceImpl implements PizzaOrderService {
 
-	private final MailSender mailSender;
+	@Autowired
+	private MailSender mailSender;
 
-	private final OrderRepository orderRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
-	private final OrderFactory orderFactory;
+	@Autowired
+	private OrderFactory orderFactory;
 
-	private final DeliveryTimeService deliveryTimeService;
+	@Autowired
+	private DeliveryTimeService deliveryTimeService;
 
-	private final MessageTemplateService messageTemplate;
+	@Autowired
+	private MessageTemplateService messageTemplate;
+//
+//	public PizzaOrderServiceImpl() {
+//		this.orderFactory = new OrderFactory();
+//		this.orderRepository = new HashMapOrderRepository();
+//		this.deliveryTimeService = new BasicDeliveryTimeServiceImpl(new TimeService());
+//		this.messageTemplate = new SimpleMessageTemplateService();
+//		this.mailSender = new MailSender();
+//	}
 
-	public PizzaOrderServiceImpl() {
-		this.orderFactory = new OrderFactory();
-		this.orderRepository = new HashMapOrderRepository();
-		this.deliveryTimeService = new BasicDeliveryTimeServiceImpl(new TimeService());
-		this.messageTemplate = new SimpleMessageTemplateService();
-		this.mailSender = new MailSender();
-	}
-
+	
+	//@Autowired
 	public PizzaOrderServiceImpl(MailSender mailSender, OrderRepository orderRepository, OrderFactory orderFactory,
 			DeliveryTimeService deliveryTimeService, MessageTemplateService messageTemplate) {
 		this.orderFactory = orderFactory;
@@ -48,6 +59,10 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
 		this.messageTemplate = messageTemplate;
 		this.mailSender = mailSender;
 	}
+
+	public PizzaOrderServiceImpl() {
+	super();
+}
 
 	@Override
 	public String createOrder(Customer customer, PizzaType type) {

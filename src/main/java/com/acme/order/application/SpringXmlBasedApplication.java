@@ -1,5 +1,8 @@
 package com.acme.order.application;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.acme.order.Customer;
 import com.acme.order.pizza.PizzaOrderService;
 import com.acme.order.pizza.PizzaOrderServiceImpl;
@@ -31,5 +34,6 @@ public class SpringXmlBasedApplication {
 //		log.info("Unprocessed orders:{}", orderService.fetchUnprocessed());
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
+		PizzaOrderService orderService = context.getBean(null);
 	}
 }
