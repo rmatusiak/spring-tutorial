@@ -34,6 +34,6 @@ public class SpringXmlBasedApplication {
 //		log.info("Unprocessed orders:{}", orderService.fetchUnprocessed());
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
-		PizzaOrderService orderService = context.getBean(null);
+		PizzaOrderService orderService = context.getBean(PizzaOrderService.class);
 	}
 }
